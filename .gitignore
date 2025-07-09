@@ -1,0 +1,24 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Log & system
+*.log
+*.tmp
+
+# Dependency folders
+node_modules/
+vendor/
+venv/
+.env
+.env.*
+
+# key
+*.pem
+OTPsend/
+*.json

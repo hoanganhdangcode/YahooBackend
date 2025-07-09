@@ -4,6 +4,7 @@ import (
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
+	"encoding/base64"
 	"encoding/pem"
 	"os"
 )
@@ -45,4 +46,21 @@ func main() {
 	})
 
 	println("✅ Đã tạo xong private.pem và public.pem")
+
+	key := make([]byte, 32) // 32 bytes = 256 bit
+	_, err = rand.Read(key)
+	if err != nil {
+		panic(err)
+	}
+
+	// Encode base64 để dễ lưu, dùng luôn trong code nếu muốn
+	encoded := base64.StdEncoding.EncodeToString(key)
+
+	// Ghi vào file
+	err = os.WriteFile("aes.key", []byte(encoded), 0644)
+	if err != nil {
+		panic(err)
+	}
+
+	println("✅ AES-256 key (base64) đã được tạo và lưu vào aes.key")
 }
